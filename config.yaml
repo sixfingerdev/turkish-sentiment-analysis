@@ -1,0 +1,51 @@
+# Türkçe Sentiment Analysis Model Configuration
+# Turkish Sentiment Analysis Model Configuration
+
+model:
+  name: "dbmdz/bert-base-turkish-cased"
+  model_type: "bert"
+  max_length: 128
+  output_dir: "./models/sentiment_model"
+  save_total_limit: 3
+
+training:
+  num_epochs: 5
+  batch_size: 16
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  warmup_steps: 100
+  gradient_accumulation_steps: 2
+  logging_steps: 50
+  eval_steps: 100
+  save_steps: 100
+  seed: 42
+
+lora:
+  use_lora: true
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules: ["query", "value"]
+  bias: "none"
+  task_type: "SEQ_CLS"
+
+dataset:
+  data_path: "./data/turkish_sentiment_dataset.csv"
+  test_size: 0.2
+  val_size: 0.1
+  labels:
+    0: "negatif"
+    1: "nötr"
+    2: "pozitif"
+
+inference:
+  device: "cuda"  # cpu or cuda
+  batch_size: 32
+  return_all_scores: true
+  threshold: 0.5
+
+paths:
+  data_dir: "./data"
+  model_dir: "./models"
+  output_dir: "./outputs"
+  log_dir: "./logs"
