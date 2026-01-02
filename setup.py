@@ -6,8 +6,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="turkish-sentiment-analysis",
     version="1.0.0",
-    author="Turkish NLP Team",
-    author_email="nlp@example.com",
+    author="SixFinger Team",
+    author_email="sixfingerdev@gmail.com",
     description="A Turkish sentiment analysis model using BERT and LoRA fine-tuning",
     long_description=long_description,
     long_description_content_type="text/markdown",
